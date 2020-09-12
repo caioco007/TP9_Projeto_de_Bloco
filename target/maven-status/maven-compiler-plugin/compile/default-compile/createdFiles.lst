@@ -1,0 +1,14 @@
+br\edu\infnet\LocacaoDeVeiculo\controller\CadastroController.class
+br\edu\infnet\LocacaoDeVeiculo\model\negocio\Cadastro.class
+br\edu\infnet\LocacaoDeVeiculo\model\service\LocacaoService.class
+br\edu\infnet\LocacaoDeVeiculo\model\repository\IClienteRepository.class
+br\edu\infnet\LocacaoDeVeiculo\model\negocio\Cliente.class
+br\edu\infnet\LocacaoDeVeiculo\model\service\CadastroService.class
+br\edu\infnet\LocacaoDeVeiculo\model\negocio\Locacao.class
+br\edu\infnet\LocacaoDeVeiculo\controller\ClienteController.class
+br\edu\infnet\LocacaoDeVeiculo\model\repository\ILocacaoRepository.class
+br\edu\infnet\LocacaoDeVeiculo\model\service\ClienteService.class
+br\edu\infnet\LocacaoDeVeiculo\controller\LocacaoController.class
+br\edu\infnet\LocacaoDeVeiculo\LocacaoDeVeiculoApplication.class
+br\edu\infnet\LocacaoDeVeiculo\model\repository\ICadastroRepository.class
+br\edu\infnet\LocacaoDeVeiculo\controller\AppController.class
