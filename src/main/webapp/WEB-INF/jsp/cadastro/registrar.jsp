@@ -24,7 +24,7 @@
 	 	 <div class="col-md-6 col-sm-12">
             <div class="login-form">
 	 	 		<h1>Registrar</h1>
-				<form action="/cadastro/incluir" class="was-validated" method="post">
+				<form action="/cadastro" class="was-validated" method="post">
 					
 				  <div class="form-group">
 				    <label for="usr">Nome:</label>
@@ -48,35 +48,10 @@
 				  </div>
 				
 				  <button type="submit" class="btn btn-black">Salvar</button>
-				   <p><a href="/voltar/login" class="btn btn-secondary stretched-link">Voltar</a></p>
 				</form>
 			</div>
 		</div>
 		
 	</div>
-	<c:if test="${not empty listaCadastro}">
-		 <div class="main">	
-		 	 <div class="col-md-6 col-sm-12">
-				<table class="table table-striped">
-				    <thead>
-				      <tr>
-				        <th>Nome</th>
-				        <th>E-mail</th>
-				        <th></th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				  		<c:forEach var="c" items="${listaCadastro}">
-					      <tr>
-					        <td>${c.nome}</td>
-					        <td>${c.login}</td>
-					        <td><a href="/cadastro/excluir/${c.id}">excluir</a></td>
-					      </tr>
-						</c:forEach>
-				    </tbody>
-				  </table>
-			</div>
-		</div>	
-	</c:if>
 </body>
 </html>

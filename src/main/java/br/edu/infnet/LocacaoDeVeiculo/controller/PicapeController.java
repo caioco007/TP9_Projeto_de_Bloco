@@ -7,70 +7,68 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Cliente;
-import br.edu.infnet.LocacaoDeVeiculo.model.service.ClienteService;
+import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Picape;
+import br.edu.infnet.LocacaoDeVeiculo.model.service.PicapeService;
 
 @Controller
-public class ClienteController {
+public class PicapeController {
+
+	@Autowired 
+	private PicapeService picapeService;
 	
-	@Autowired
-	private ClienteService clienteService;
-		
-	@GetMapping(value = "/cliente")
+	@GetMapping(value = "/picape")
 	public String novo(
 				Model model
 			) {
 		model.addAttribute("operacao", "inclusão");
 		
-		return "cliente/detalhe";
+		return "picape/detalhe";
 	}
 	
-	@GetMapping(value = "/clientes")
+	@GetMapping(value = "/picapes")
 	public String lista(
 				Model model
 			) {
+		model.addAttribute("picapes", picapeService.obterLista());
 		
-		model.addAttribute("clientes", clienteService.obterLista()); 
-		
-		return "cliente/lista";
+		return "picape/lista";
 	}
 	
-	@PostMapping(value = "/cliente/incluir")
+	@PostMapping(value = "/picape/incluir")
 	public String incluir(
-				Cliente cliente
+				Picape picape
 			) {
 		
-		clienteService.incluir(cliente);
+		picapeService.incluir(picape);
 		
-		return "redirect:/clientes";
+		return "redirect:/picapes";
 	}
-	
-	@GetMapping(value = "/cliente/{id}/excluir")
+
+	@GetMapping(value = "/picape/{id}/excluir")
 	public String excluir(
 				Model model,
 				@PathVariable Integer id
 			) {
 		
 		try {
-			clienteService.excluir(id);
+			picapeService.excluir(id);
 		} catch (Exception e) {
 			model.addAttribute("msgError", "Impossível realizar a exclusão: este item está sendo utilizado!!");
 			return this.lista(model);
 		}
 		
-		return "redirect:/clientes";
+		return "redirect:/picapes";
 	}
 	
-	@GetMapping(value = "/cliente/{id}/alterar")
+	@GetMapping(value = "/picapes/{id}/alterar")
 	public String alterar(
 				Model model,
 				@PathVariable Integer id
 			) {
+		
+		model.addAttribute("picape", picapeService.obterPorId(id));
 		model.addAttribute("operacao", "alteração");
 		
-		model.addAttribute("cliente", clienteService.obterPorId(id));
-		
-		return "cliente/detalhe";
+		return "picape/detalhe";
 	}
-	
 }

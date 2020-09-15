@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Locacao de Veiculo</title>
+  <title>AppLocacao</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -19,14 +19,14 @@
 			<c:import url="/WEB-INF/jsp/header.jsp"/>
 			
 			
-		    <h3>Cadastro de Locação</h3>
+		    <h3>Locação: ${operacao}</h3>
 	
 			<form action="/locacao/incluir" method="post">
 			
 			  <div class="form-group">
 			    <label for="usr">Cliente:</label>
 				<select name="cliente.id" class="form-control">
-					<c:forEach var="c" items="${listaCliente}">
+					<c:forEach var="c" items="${clientes}">
 						<option value="${c.id}">${c}</option>
 					</c:forEach>
 				</select>
@@ -44,9 +44,29 @@
 				  </div>
 			  </div>
 					
-			  <button type="submit" class="btn btn-primary">Salvar</button>
-			</form>
-			<c:import url="/WEB-INF/jsp/footer.jsp"/>		
+			  <div class="form-group">
+				<label for="usr">Veiculos:</label>
+				<c:if test="${not empty veiculos}">
+					<div class="form-check">
+						<label class="form-check-label">
+							<c:forEach var="v" items="${veiculos}">
+								<input type="checkbox" class="form-check-input" name="veiculosIds" value="${v.id}"> ${v}<br>
+							</c:forEach>
+						</label>
+					</div>
+				</c:if>
+				<c:if test="${empty veiculos}">
+				<label for="usr">Nenhum produto cadastrado!</label>
+				</c:if>
+			</div>
+	
+		<c:if test="${empty veiculos || empty clientes}">
+			<c:set var="disabled" value="disabled"/>
+		</c:if>
+		
+	
+	    <button ${disabled} type="submit" class="btn btn-primary">Gravar</button>
+		</form>	
 		</div>
 	</div>
 	

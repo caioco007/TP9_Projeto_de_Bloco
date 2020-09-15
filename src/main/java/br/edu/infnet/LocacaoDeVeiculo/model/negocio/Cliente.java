@@ -21,7 +21,6 @@ public class Cliente {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate nascimento;
 	private Long cpf;
-	private Long cep;
 	private Integer num;
 	private Long celular;
 	private String email;
@@ -62,15 +61,7 @@ public class Cliente {
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
-
-	public Long getCep() {
-		return cep;
-	}
-
-	public void setCep(Long cep) {
-		this.cep = cep;
-	}
-
+	
 	public Integer getNum() {
 		return num;
 	}

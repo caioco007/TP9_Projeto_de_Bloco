@@ -4,20 +4,23 @@
 		  <a class="navbar-brand" href="/home">Locacão: ${user.nome}</a>
 		  <ul class="navbar-nav">
 		    <li class="nav-item">
-		      <a class="nav-link" href="/home">Inicio</a>
+		      <a class="nav-link" href="/locacao">Locações</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="/clientes">Clientes</a>
+		      <a class="nav-link" href="/cliente">Clientes</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="/cliente">Novo Cliente</a>
+		      <a class="nav-link" href="/veiculos">Veiculos</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="https://github.com/caioco007/TP9_Projeto_de_Bloco.git">Git</a>
+		      <a class="nav-link" href="/economico">Economicos</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="/sair">Sair</a>
+		      <a class="nav-link" href="/executivo">Executivos</a>
 		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href="/picape">Picapes</a>
+		    </li>    
 		  </ul>
 		</nav>	
 		

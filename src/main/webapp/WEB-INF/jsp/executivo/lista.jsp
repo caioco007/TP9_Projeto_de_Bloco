@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cliente</title>
+  <title>AppLocacao</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -20,10 +20,10 @@
 
 		<div class="dropdown">
 		    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-		      Clientes
+		      Veiculos Executivos
 		    </button>
 		    <div class="dropdown-menu">
-		      <a class="dropdown-item" href="cliente">Novo</a>
+		      <a class="dropdown-item" href="/executivo">Novo</a>
 		    </div>
 		  </div>	
 		<br>
@@ -33,39 +33,34 @@
 			  <strong>Erro!!</strong> ${msgError}
 			</div>		
 		</c:if>
-
-		<c:if test="${not empty clientes}">
-			        <table class="table table-striped">
-			            <thead>
-			                <tr>
-						        <th>ID</th>
-						        <th>Nome</th>
-						        <th>CPF</th>
-						        <th>Nascimento</th>
-						        <th>Celular</th>
-						        <th>Endereço</th>
-			                    <th class="actions">Ações</th>
-			                 </tr>
-			            </thead>
-			            <tbody>
-			 				<c:forEach var="c" items="${clientes}">
-		  		
-						  		  <fmt:parseDate value="${c.nascimento}" pattern="yyyy-MM-dd" var="dataFormatada" type="date"/>
-							      <tr>
-							        <td>${c.id}</td>
-							        <td>${c.nome}</td>
-							        <td>${c.cpf}</td>
-							         <td><fmt:formatDate value="${dataFormatada}" type="date" pattern="dd/MM/yyyy"/></td>
-							        <td>${c.celular}</td>
-							        <td class="actions">			                    
-				                        <a class="btn btn-danger btn-xs" href="/cliente/${c.id}/excluir">Excluir</a>
-				                   </td>
-							     </tr>
-							  </c:forEach>	 
-			          </tbody>
-			       </table>
-			  </c:if>
-		<c:if test="${empty solicitantes}">
+		
+		<c:if test="${not empty executivos}">
+			<table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th>ID</th>
+			        <th>MARCA</th>
+			        <th>MODELO</th>
+			        <th>PLACA</th>
+			        <th>VALOR</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<c:forEach var="ex" items="${executivos}">
+				      <tr>
+				        <td>${ex.id}</td>
+				        <td>${ex.marca}</td>
+				        <td>${ex.modelo}</td>
+				        <td>${ex.placa}</td>
+				        <td>${ex.valor}</td>
+				        <td><a href="/executivo/${ex.id}/excluir">excluir</a></td>
+				        <td><a href="/executivo/${ex.id}/alterar">alterar</a></td>
+				      </tr>
+			      </c:forEach>
+			    </tbody>
+			</table>	
+		</c:if>
+		<c:if test="${empty executivos}">
 			<div class="alert alert-warning">
 				<strong>Sem registros cadastrados!!</strong>
 			</div>

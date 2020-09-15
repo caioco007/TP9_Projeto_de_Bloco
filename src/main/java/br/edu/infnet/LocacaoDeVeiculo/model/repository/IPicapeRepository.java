@@ -6,10 +6,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Cliente;
+import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Picape;
 
 @Repository
-public interface IClienteRepository extends CrudRepository<Cliente, Integer> {
+public interface IPicapeRepository extends CrudRepository<Picape, Integer> {
 	
-	List<Cliente> findAll(Sort by);
+	List<Picape> findAll(Sort by);
 }

@@ -11,4 +11,6 @@ public interface ICadastroRepository extends CrudRepository<Cadastro, Integer> {
 	
 	@Query("from Cadastro c where c.login =:login and c.senha =:senha")
 	Cadastro autenticacao(String login, String senha);
+	
+	Cadastro findByLogin(String login);
 }

@@ -13,11 +13,10 @@ import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Cadastro;
 import br.edu.infnet.LocacaoDeVeiculo.model.service.CadastroService;
 
 @Controller
-@SessionAttributes("alerta")
+@SessionAttributes("user")
 public class AppController {
 
-	@Autowired 
-	private CadastroService cadastroService;
+	@Autowired private CadastroService cadastroService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showInit() {
@@ -36,20 +35,24 @@ public class AppController {
 				@RequestParam String senha
 			) {
 
-		Cadastro cadastro = cadastroService.isValid(login, senha);
+		Cadastro cadastro = cadastroService.userExist(login);
 		
 		if(cadastro == null) {
+			return "usuario/detalhe";
+			
+		}else if (!cadastroService.isValid(login, senha)) {
 			model.addAttribute("mensagem", "Credenciais inválidas: " + login);
 			return "login";
-		} else {
-			model.addAttribute("alerta","Usuário " + cadastro.getLogin() + " está autenticado no sistema");
+			
+		}  else {
+			model.addAttribute("user", cadastro);
 			return "home";
 		}		
 	}
-
-	@RequestMapping(value = "/voltar/login", method = RequestMethod.GET) 
+	
+	@RequestMapping(value = "/voltar", method = RequestMethod.GET) 
 	public String voltar() {		
-		return "login";
+		return this.showInit();
 	}
 	
 	@RequestMapping(value = "/sair", method = RequestMethod.GET)
@@ -57,6 +60,6 @@ public class AppController {
 		
 		session.setComplete();		
 		
-		return "login";
+		return "redirect:/";
 	}
 }

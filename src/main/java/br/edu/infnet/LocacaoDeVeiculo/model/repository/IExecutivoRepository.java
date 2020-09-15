@@ -6,10 +6,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Cliente;
+import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Executivo;
 
 @Repository
-public interface IClienteRepository extends CrudRepository<Cliente, Integer> {
+public interface IExecutivoRepository extends CrudRepository<Executivo, Integer> {
 	
-	List<Cliente> findAll(Sort by);
+	List<Executivo> findAll(Sort by);
+
 }

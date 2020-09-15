@@ -7,70 +7,68 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Cliente;
-import br.edu.infnet.LocacaoDeVeiculo.model.service.ClienteService;
+import br.edu.infnet.LocacaoDeVeiculo.model.negocio.Economico;
+import br.edu.infnet.LocacaoDeVeiculo.model.service.EconomicoService;
 
 @Controller
-public class ClienteController {
+public class EconomicoController {
+
+	@Autowired 
+	private EconomicoService economicoService;
 	
-	@Autowired
-	private ClienteService clienteService;
-		
-	@GetMapping(value = "/cliente")
+	@GetMapping(value = "/economico")
 	public String novo(
 				Model model
 			) {
 		model.addAttribute("operacao", "inclusão");
 		
-		return "cliente/detalhe";
+		return "economico/detalhe";
 	}
 	
-	@GetMapping(value = "/clientes")
+	@GetMapping(value = "/economicos")
 	public String lista(
 				Model model
 			) {
+		model.addAttribute("economicos", economicoService.obterLista());
 		
-		model.addAttribute("clientes", clienteService.obterLista()); 
-		
-		return "cliente/lista";
+		return "economico/lista";
 	}
 	
-	@PostMapping(value = "/cliente/incluir")
+	@PostMapping(value = "/economico/incluir")
 	public String incluir(
-				Cliente cliente
+				Economico economico
 			) {
 		
-		clienteService.incluir(cliente);
+		economicoService.incluir(economico);
 		
-		return "redirect:/clientes";
+		return "redirect:/economicos";
 	}
-	
-	@GetMapping(value = "/cliente/{id}/excluir")
+
+	@GetMapping(value = "/economicos/{id}/excluir")
 	public String excluir(
 				Model model,
 				@PathVariable Integer id
 			) {
 		
 		try {
-			clienteService.excluir(id);
+			economicoService.excluir(id);
 		} catch (Exception e) {
 			model.addAttribute("msgError", "Impossível realizar a exclusão: este item está sendo utilizado!!");
 			return this.lista(model);
 		}
 		
-		return "redirect:/clientes";
+		return "redirect:/economicos";
 	}
 	
-	@GetMapping(value = "/cliente/{id}/alterar")
+	@GetMapping(value = "/economico/{id}/alterar")
 	public String alterar(
 				Model model,
 				@PathVariable Integer id
 			) {
+		
+		model.addAttribute("economico", economicoService.obterPorId(id));
 		model.addAttribute("operacao", "alteração");
 		
-		model.addAttribute("cliente", clienteService.obterPorId(id));
-		
-		return "cliente/detalhe";
+		return "economico/detalhe";
 	}
-	
 }

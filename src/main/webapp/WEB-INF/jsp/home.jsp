@@ -14,27 +14,10 @@
   <link rel="stylesheet" href="<c:url value='\css\style.css' />">
 </head>
 <body>
-		
 	<div class="container">
-	
-		<div class="container-fluid" style="margin-top:80px">
-
+		<div class="container-fluid" style="margin-top:80px">		
 			<c:import url="/WEB-INF/jsp/header.jsp"/>
-			
-		    <h3>Projeto Locação</h3>
-		    <p>Sistema de Locação</p>				
-			
-			<div class="col-md-3">
-			    <h2>Locações</h2>
-			</div>
-			
-			<div class="col-md-3">
-			    <a href="/locacao" class="btn btn-primary pull-right h2">Nova Locação</a>
-			</div>
-					
-			<c:import url="/WEB-INF/jsp/locacao/lista.jsp"/>
-			
-		</div>	
-	</div>
+		</div>
+	</div>		
 </body>
 </html>

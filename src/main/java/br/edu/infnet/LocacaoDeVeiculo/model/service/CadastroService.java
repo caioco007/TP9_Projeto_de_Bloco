@@ -1,7 +1,5 @@
 package br.edu.infnet.LocacaoDeVeiculo.model.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +12,16 @@ public class CadastroService {
 	@Autowired
 	private ICadastroRepository cadastroRepository;
 
-	public Cadastro isValid(String login, String senha) {		
-		return cadastroRepository.autenticacao(login, senha);
+	public boolean isValid(String login, String senha) {		
+		return cadastroRepository.autenticacao(login, senha) != null;
 	}
 	
-	public List<Cadastro> obterLista(){
-		return (List<Cadastro>)cadastroRepository.findAll();
+	public Cadastro userExist(String login) {
+		return cadastroRepository.findByLogin(login);
 	}
 		
 	public void incluir(Cadastro cadastro) {
 		cadastroRepository.save(cadastro);
-	}
-
-	public void excluir(Integer id) {
-		cadastroRepository.deleteById(id);
 	}
 	
 }
